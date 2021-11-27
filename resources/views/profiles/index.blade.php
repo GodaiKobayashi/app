@@ -7,6 +7,7 @@
     </head>
     
     <body>
+         <a href="/profiles/create">新規</a>
 
 <div class='profiles'>
 
@@ -14,7 +15,9 @@
     @foreach($profiles as $profile)
     
         名前:
-        <h3 class='name'>{{ $profile->name }}</h3>  
+        <h3 class='name'>
+            <a href="{{ route('profile.show',$profile) }}">{{ $profile->name }}</a>
+        </h3>  
         ユーザー番号：
         <h5 class="id">{{$profile->id}}</h5>
         自己紹介:
@@ -35,5 +38,8 @@
     @endforeach
     
 </div>
+<div class='paginate'>
+            {{ $profiles->links() }}
+        </div>
     </body>
 </html>

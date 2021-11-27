@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Profile;
+use App\Device;
 
 
 class ProfileController extends Controller
@@ -11,7 +12,27 @@ class ProfileController extends Controller
     public function index(Profile $profiles)
     {
         return view('profiles.index')
-        ->with(['profiles' => $profiles->get()]);
+        ->with(['profiles' => $profiles->getPaginateByLimit()]);
+    }
+    
+   public function show(Profile $profile )
+   {
+       return view('profiles.show')
+       ->with(['profile' => $profile ]);
+   }
+   
+   
+   
+    // public function create(Device $devices)
+    // {
+    //     return view('profiles.create')
+    //     ->with(['devices' => $devices->get()]);
+    // }
+    
+    public function create(Device $devices)
+    {
+        return view('profiles.create')
+        ->with(['devices' => $devices->get()]);
     }
     
     public function store(Request $request, Profile $profile)

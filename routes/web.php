@@ -18,3 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('/profiles', 'ProfileController@index');
+Route::get('/profiles/create', 'ProfileController@create');
+
+Route::get('/profiles/{profile}', 'ProfileController@show')->name('profile.show');
+
+Route::post('/profiles/store', 'ProfileController@store')->name('profile.store');
