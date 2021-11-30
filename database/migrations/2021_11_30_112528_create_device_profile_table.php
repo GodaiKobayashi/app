@@ -13,7 +13,7 @@ class CreateDeviceProfileTable extends Migration
      */
     public function up()
     {
-        Schema::create('device_profile', function (Blueprint $table) {
+         Schema::create('device_profile', function (Blueprint $table) {
             $table->integer('device_id')->unsigned();   
             $table->integer('profile_id')->unsigned();    
             $table->primary(['device_id', 'profile_id']);  

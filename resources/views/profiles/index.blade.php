@@ -18,8 +18,8 @@
         <h3 class='name'>
             <a href="{{ route('profile.show',$profile) }}">{{ $profile->name }}</a>
         </h3>  
-        ユーザー番号：
-        <h5 class="id">{{$profile->id}}</h5>
+        <!--ユーザー番号：-->
+        <!--<h5 class="id">{{$profile->id}}</h5>-->
         自己紹介:
         <h5 class='short'>{{ $profile->short }}</h5>
        

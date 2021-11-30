@@ -22,7 +22,6 @@
             <div>
                 <h2>機種</h2>
                 @foreach($devices as $device)
-        
                     <label>
                         <input type="checkbox" value="{{ $device->id }}" name="devices_array[]">
                             {{$device->device_name}}
@@ -33,6 +32,7 @@
             </div>
             <input type="submit" value="保存"/>
         </form>
+        <a href="{{ route('profile.index') }}">戻る</a>
     </body>
     
 </html>
