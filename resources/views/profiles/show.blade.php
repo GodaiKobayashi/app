@@ -7,6 +7,7 @@
     </head>
     
     <body>
+        <a href="{{ route('profile.edit',$profile) }}">更新</a>
             <div>
                 <h2>名前</h2>
                 <p>{{ $profile->name }}</p>
@@ -23,7 +24,13 @@
                     {{ $device->device_name }}
                 @endforeach
             </div>
-            
+         <form method="post" action="{{ route('profile.destroy', $profile) }}">
+            @method('DELETE')
+            @csrf
+
+            <button class="btn">[削除]</button>
+        </form>
+        <a href="{{ route('profile.index') }}">戻る</a> 
     </body>
     
 </html>

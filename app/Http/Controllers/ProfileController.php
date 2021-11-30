@@ -47,4 +47,42 @@ class ProfileController extends Controller
         $profile->devices()->attach($input_devices); 
         return redirect('/profiles');
     }
+    
+    public function edit(Profile $profile, Device $device)
+    {
+      
+       return view('profiles.edit')->with(['profile' => $profile,'devices' => $device->get()]);
+    }
+    
+    public function update(Request $request, Profile $profile , Device $device)
+    {
+    
+          $profile->name = $request->name;
+          $profile->short = $request->profile['short'];
+          $device = $request->devices_array;
+          
+          $profile->save();
+          $profile->devices()->sync($device); 
+            // Profile::where('id', $id)->update($update);
+            // $profile = $profile->id;
+            // $profile->devices()->sync(request()->devices);
+            return redirect('/profiles');
+     
+        //  $profile->name = $request->name;
+        //  $profile->short = $request->short;
+        //  $profile->save(name);
+        //  $profile->save(short);
+        //  return redirect()
+        //  ->route('profile.show', $profile);
+         
+    }
+    
+    public function destroy(Profile $profile)
+    {
+        $profile->delete();
+
+        return redirect()
+            ->route('profile.index');
+    }
+    
 }
