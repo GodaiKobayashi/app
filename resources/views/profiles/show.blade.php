@@ -7,7 +7,7 @@
     </head>
     
     <body>
-        <a href="{{ route('profile.edit',$profile) }}">更新</a>
+        <a href="{{ route('profile.edit',$profile->id) }}">更新</a>
             <div>
                 <h2>名前</h2>
                 <p>{{ $profile->name }}</p>

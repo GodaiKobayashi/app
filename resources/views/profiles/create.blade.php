@@ -23,6 +23,7 @@
                 <h2>機種</h2>
                 @foreach($devices as $device)
                     <label>
+                        @dd($profile->devices->id);
                         <input type="checkbox" value="{{ $device->id }}" name="devices_array[]">
                             {{$device->device_name}}
                         </input>
