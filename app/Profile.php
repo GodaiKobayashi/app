@@ -15,7 +15,7 @@ class Profile extends Model
     public function devices()
     {
     
-        return $this->belongsToMany('App\Device');
+        return $this->belongsToMany(Device::class);
     }
     
     public function getPaginateByLimit(int $limit_count = 3)

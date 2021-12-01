@@ -28,8 +28,8 @@
                     @foreach($devices as $device)
                     
                      <label>
-                    @dd($device->id);
-                           <input type="checkbox" value="{{ $device->id }}" name="devices_array[]" @if ($device->id == $profile->devices ) checked @endif>
+                  
+                           <input type="checkbox" value="{{ $device->id }}" name="devices_array[]"{{ $profile->devices->contains($device->id) ? 'checked' : '' }}>
                            
                                {{$device->device_name}}
                            </input>

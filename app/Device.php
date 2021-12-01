@@ -13,6 +13,6 @@ class Device extends Model
     
     public function profiles()
     {
-        return $this->belongsToMany('App\Profile');
+        return $this->belongsToMany(Profile::class);
     }
 }

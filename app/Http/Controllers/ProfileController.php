@@ -50,8 +50,8 @@ class ProfileController extends Controller
     
     public function edit(Profile $profile, Device $device)
     {
-      
-       return view('profiles.edit')->with(['profile' => $profile,'devices' => $device->get()]);
+            return view('profiles.edit')->with(['profile' => $profile,'devices' => $device->get()]);
+
     }
     
     public function update(Request $request, Profile $profile , Device $device)
