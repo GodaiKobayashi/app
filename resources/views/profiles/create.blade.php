@@ -6,6 +6,7 @@
 
     </head>
     
+    
     <body>
         <form action="{{ route('profile.store') }}" method="POST">
             @csrf
@@ -23,9 +24,22 @@
                 <h2>機種</h2>
                 @foreach($devices as $device)
                     <label>
-                        @dd($profile->devices->id);
+                        
                         <input type="checkbox" value="{{ $device->id }}" name="devices_array[]">
                             {{$device->device_name}}
+                        </input>
+                    </label>
+                    
+                @endforeach         
+            </div>
+            
+            <div>
+                <h2>ランク</h2>
+                @foreach($ranks as $rank)
+                    <label>
+                      
+                        <input type="checkbox" value="{{ $rank->id }}" name="ranks_array[]">
+                            {{$rank->rank_name}}
                         </input>
                     </label>
                     

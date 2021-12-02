@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Device extends Model
+class Rank extends Model
 {
     protected $fillable = [
         'id',
-        'device_name',
+        'rank_name',
         'profile_id',
     ];
-    
+
     public function profiles()
     {
         return $this->belongsToMany(Profile::class);

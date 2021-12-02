@@ -10,12 +10,20 @@ class Profile extends Model
         'name',
         'short',
         'id',
+        'device_id',
     ];
     
     public function devices()
     {
     
         return $this->belongsToMany(Device::class);
+    }
+    
+        
+    public function ranks()
+    {
+    
+        return $this->belongsToMany(Rank::class);
     }
     
     public function getPaginateByLimit(int $limit_count = 3)

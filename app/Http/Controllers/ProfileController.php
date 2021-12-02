@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Profile;
 use App\Device;
+use App\Rank;
 
 
 class ProfileController extends Controller
@@ -21,48 +22,45 @@ class ProfileController extends Controller
        ->with(['profile' => $profile ]);
    }
    
-   
-   
-    // public function create(Device $devices)
-    // {
-    //     return view('profiles.create')
-    //     ->with(['devices' => $devices->get()]);
-    // }
     
-    public function create(Device $devices)
+    public function create(Device $devices,Profile $profiles,Rank $ranks)
     {
         return view('profiles.create')
-        ->with(['devices' => $devices->get()]);
+        ->with(['devices' => $devices->get(),'profile' => $profiles->get(),'ranks' => $ranks->get()]);
     }
     
-    public function store(Request $request, Profile $profile)
+    public function store(Request $request, Profile $profile, Rank $rank)
     {
         $input_profile = $request['profile'];
         $input_devices = $request->devices_array;  //subjects_arrayはnameで設定した配列名
+        $input_rank = $request->ranks_array;  //subjects_arrayはnameで設定した配列名
     
     //先にstudentsテーブルにデータを保存
         $profile->fill($input_profile)->save();
     
     //attachメソッドを使って中間テーブルにデータを保存
         $profile->devices()->attach($input_devices); 
+        $profile->ranks()->attach($input_rank); 
         return redirect('/profiles');
     }
     
-    public function edit(Profile $profile, Device $device)
+    public function edit(Profile $profile, Device $device, Rank $rank)
     {
-            return view('profiles.edit')->with(['profile' => $profile,'devices' => $device->get()]);
+            return view('profiles.edit')->with(['profile' => $profile,'devices' => $device->get(), 'ranks'=> $rank->get()]);
 
     }
     
-    public function update(Request $request, Profile $profile , Device $device)
+    public function update(Request $request, Profile $profile , Device $device, Rank $rank)
     {
     
           $profile->name = $request->name;
           $profile->short = $request->profile['short'];
           $device = $request->devices_array;
+          $rank = $request->ranks_array;
           
           $profile->save();
           $profile->devices()->sync($device); 
+          $profile->ranks()->sync($rank); 
             // Profile::where('id', $id)->update($update);
             // $profile = $profile->id;
             // $profile->devices()->sync(request()->devices);
