@@ -31,3 +31,4 @@ Route::delete('/profiles/{profile}/destroy', 'ProfileController@destroy')->name(
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

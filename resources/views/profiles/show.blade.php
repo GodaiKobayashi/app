@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <title>開発中</title>
+@extends('layouts.app')
 
-    </head>
-    
-    <body>
+@section('content')
         <a href="{{ route('profile.edit',$profile->id) }}">更新</a>
             <div>
                 <h2>名前</h2>
@@ -24,6 +18,12 @@
                     {{ $device->device_name }}
                 @endforeach
             </div>
+            <div>
+                <h2>ランク</h2>
+                @foreach($profile->ranks as $rank)   
+                    {{ $rank->rank_name }}
+                @endforeach
+            </div>
          <form method="post" action="{{ route('profile.destroy', $profile) }}">
             @method('DELETE')
             @csrf
@@ -31,7 +31,4 @@
             <button class="btn">[削除]</button>
         </form>
         <a href="{{ route('profile.index') }}">戻る</a> 
-    </body>
-    
-</html>
-        
+ @endsection

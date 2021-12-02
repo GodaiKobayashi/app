@@ -26,15 +26,21 @@
                 <div>
                     <h2>機種</h2>
                     @foreach($devices as $device)
-                    
                      <label>
-                  
                            <input type="checkbox" value="{{ $device->id }}" name="devices_array[]"{{ $profile->devices->contains($device->id) ? 'checked' : '' }}>
-                           
                                {{$device->device_name}}
                            </input>
                      </label>
-                    
+                    @endforeach         
+                </div>
+                <div>
+                    <h2>ランク</h2>
+                    @foreach($ranks as $rank)
+                     <label>
+                           <input type="checkbox" value="{{ $rank->id }}" name="ranks_array[]"{{ $profile->ranks->contains($rank->id) ? 'checked' : '' }}>
+                               {{$rank->rank_name}}
+                           </input>
+                     </label>
                     @endforeach         
                 </div>
                 
