@@ -14,7 +14,7 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Route::get('/profiles', 'ProfileController@index')->name('profile.index');
@@ -30,5 +30,9 @@ Route::put('/profiles/{profile}/update', 'ProfileController@update')->name('prof
 Route::delete('/profiles/{profile}/destroy', 'ProfileController@destroy')->name('profile.destroy');
 Auth::routes();
 
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::post('/add', 'HomeController@add')->name('add');
+Route::get('/result/ajax', 'HomeController@getData');
