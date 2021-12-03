@@ -17,6 +17,10 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/add', 'HomeController@add')->name('add');
+Route::get('/result/ajax', 'HomeController@getData');
+
 Route::get('/profiles', 'ProfileController@index')->name('profile.index');
 Route::get('/profiles/create', 'ProfileController@create');
 Route::get('/profiles/{profile}/edit', 'ProfileController@edit')->name('profile.edit');
@@ -32,7 +36,3 @@ Auth::routes();
 
 
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::post('/add', 'HomeController@add')->name('add');
-Route::get('/result/ajax', 'HomeController@getData');

@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\Profile;
 use App\Device;
 use App\Rank;
+use App\User;
 
 
 class ProfileController extends Controller
 {   
     public function index(Profile $profiles)
     {
+        
         return view('profiles.index')
         ->with(['profiles' => $profiles->getPaginateByLimit()]);
     }
@@ -31,9 +33,12 @@ class ProfileController extends Controller
     
     public function store(Request $request, Profile $profile, Rank $rank)
     {
+        
         $input_profile = $request['profile'];
         $input_devices = $request->devices_array;  //subjects_arrayはnameで設定した配列名
         $input_rank = $request->ranks_array;  //subjects_arrayはnameで設定した配列名
+        $input_profile += ['user_id' => $request->user()->id]; 
+
     
     //先にstudentsテーブルにデータを保存
         $profile->fill($input_profile)->save();
