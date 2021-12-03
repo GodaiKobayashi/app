@@ -43,7 +43,7 @@ class HomeController extends Controller
         Comment::create([
             'login_id' => $user->id,
             'name' => $user->name,
-            'comment' => $comment
+            'comment' => $comment,
         ]);
         return redirect()->route('home');
     }

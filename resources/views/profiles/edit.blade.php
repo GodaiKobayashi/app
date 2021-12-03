@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <title>開発中</title>
+@extends('layouts.app')
 
-    </head>
-    
-        <!-- body内だけを表示しています。 -->
-    <body>
+@section('content')
         <h1 class="title">編集画面</h1>
         <div class="content">
             
@@ -48,6 +41,4 @@
                 <a href="{{ route('profile.show',$profile) }}">戻る</a>
             </form>
         </div>
-    </body>
-    
-</html>
+@endsection

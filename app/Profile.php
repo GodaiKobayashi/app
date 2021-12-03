@@ -11,6 +11,7 @@ class Profile extends Model
         'short',
         'id',
         'device_id',
+        'user_id'
     ];
     
     public function devices()
@@ -32,4 +33,8 @@ class Profile extends Model
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
