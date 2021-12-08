@@ -13,7 +13,7 @@
                     <input type='text' name='name' value="{{ $profile->name }}">
                 </div>
                 <div class='content__body'>
-                    <h2>自己紹介</h2>
+                    <h2>Twitter ID</h2>
                     <input type='text' name='profile[short]' value="{{ $profile->short }}">
                 </div>
                 <div>
@@ -30,7 +30,7 @@
                     <h2>ランク</h2>
                     @foreach($ranks as $rank)
                      <label>
-                           <input type="checkbox" value="{{ $rank->id }}" name="ranks_array[]"{{ $profile->ranks->contains($rank->id) ? 'checked' : '' }}>
+                           <input type="radio" value="{{ $rank->id }}" name="ranks_array[]"{{ $profile->ranks->contains($rank->id) ? 'checked' : '' }}>
                                {{$rank->rank_name}}
                            </input>
                      </label>

@@ -7,6 +7,7 @@ use App\Profile;
 use App\Device;
 use App\Rank;
 use App\User;
+use App\Http\Controllers\Auth;
 
 
 class ProfileController extends Controller
@@ -35,12 +36,12 @@ class ProfileController extends Controller
     {
         
         $input_profile = $request['profile'];
-        $input_devices = $request->devices_array;  //subjects_arrayはnameで設定した配列名
-        $input_rank = $request->ranks_array;  //subjects_arrayはnameで設定した配列名
+        $input_devices = $request->devices_array;  
+        $input_rank = $request->ranks_array;  
         $input_profile += ['user_id' => $request->user()->id]; 
 
     
-    //先にstudentsテーブルにデータを保存
+    
         $profile->fill($input_profile)->save();
     
     //attachメソッドを使って中間テーブルにデータを保存
@@ -86,6 +87,13 @@ class ProfileController extends Controller
 
         return redirect()
             ->route('profile.index');
+    }
+    
+    public function my()
+    {
+        $user_id = Auth::user()->id;
+        return view('profiles.my')
+        ->with(['user_id' => $user_id]);
     }
     
 }
