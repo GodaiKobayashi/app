@@ -3,12 +3,12 @@
 @section('content')
         <a href="{{ route('profile.edit',$profile->id) }}">更新</a>
             <div>
-                <h2>名前</h2>
+                <h2>Display Name</h2>
                 <p>{{ $profile->name }}</p>
             </div>
         
             <div>
-                <h2>自己紹介</h2>
+                <h2>Twitter ID</h2>
                 <p>{{ $profile->short }}</p>
             </div>
         

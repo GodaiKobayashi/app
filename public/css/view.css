@@ -9,18 +9,23 @@
 }
 
 .chat-area {
-  width: 70%;
+  width: 60%;
 }
 
+.chat-area .card-header {
+  font-weight: bold
+}
 .comment-container {
-  position: fixed;
-  bottom: 20px;
-  text-align: center;
-  width: 100%;
+  /*position: relative;left: 100px;*/
+  /*bottom: 20px;*/
+  /*text-align: center;*/
+  /*width: 100%;*/
 }
 
 .comment-area {
-  width: 70%;
+  width: 60%;
+  height: 10%;
+  
 }
 
 .comment-btn {
@@ -46,4 +51,41 @@
   margin-left: 5px;
   color: #a0a0a0;
 }
+
+.col-md-2 .card-body {
+    padding:0;
+}
+.col-md-2 ul {
+  padding: 0;
+  position: relative;
+}
+
+.col-md-2 ul li {
+  line-height: 1.8;
+  padding: 0.5em 0.5em 0.5em 0.7em;
+  list-style-type: none!important;
+  background: -webkit-linear-gradient(top, whitesmoke 0%, whitesmoke 100%);
+  background: linear-gradient(to bottom, whitesmoke 0%, #dadada 100%);
+  text-shadow: 1px 1px 1px whitesmoke;
+  color: black;
+}
+
+.col-md-2 .card-header {
+   font-weight: bold;
+}
+
+.col-md-2 .profile {
+   padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #5d627b;
+    background: white;
+    border-top: solid 5px #5d627b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+.col-md-2 .profile h4, h5{
+  font-weight: bold;
+}
+
+
 /*# sourceMappingURL=view.css.map */

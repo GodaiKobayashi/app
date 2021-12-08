@@ -8,16 +8,17 @@
     
     
     <body>
+        <h1>ユーザープロフィール作成</h1>
         <form action="{{ route('profile.store') }}" method="POST">
             @csrf
             <div>
-                <h2>名前</h2>
-                <input type="text" name="profile[name]" placeholder="名前" />
+                <h2>Display Name</h2>
+                <input type="text" name="profile[name]" placeholder="ゲーム内の名前" />
             </div>
         
             <div>
-                <h2>自己紹介</h2>
-                <input type="text" name="profile[short]" placeholder="自己紹介" />
+                <h2>Twitter ID</h2>
+                <input type="text" name="profile[short]" placeholder="TwitterID" />
             </div>
         
             <div>
@@ -38,7 +39,7 @@
                 @foreach($ranks as $rank)
                     <label>
                       
-                        <input type="checkbox" value="{{ $rank->id }}" name="ranks_array[]">
+                        <input type="radio" value="{{ $rank->id }}" name="ranks_array[]">
                             {{$rank->rank_name}}
                         </input>
                     </label>

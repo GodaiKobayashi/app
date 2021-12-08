@@ -10,7 +10,7 @@
     
         
         <h3 class='name'>
-            名前:
+            Display Name:
             <a href="{{ route('profile.show',$profile) }}">{{ $profile->name }}</a>
             
         </h3>  
@@ -18,7 +18,7 @@
        <p><b>ユーザー：</b>{{Auth::user()->name}}</p>
         
        
-        <h5 class='short'><b>自己紹介:</b>{{ $profile->short }}</h5>
+        <h5 class='short'><b>Twitter ID:</b>{{ $profile->short }}</h5>
         
         <h5 class='device'>
             <b>機種:</b>

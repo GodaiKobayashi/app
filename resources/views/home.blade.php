@@ -2,15 +2,14 @@
 
 @section('content')
 <div class="chat-container row justify-content-center">
+    @include('components.menu')
     <div class="chat-area">
         <div class="card">
             <div class="card-header">展示版</div>
             <div class="card-body chat-card">
                 <div id="comment-data"></div>
             </div>
-        </div>
-    </div>
-</div>
+
 
 <form method="POST" action="{{route('add')}}">
     @csrf
@@ -23,6 +22,9 @@
         </div>
     </div>
 </form>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('js')
