@@ -5,12 +5,16 @@
         <div class="content">
             
          
-            <form action="{{ route('profile.update', $profile) }}" method="POST">
+            <form action="{{ route('profile.update', $profile) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class='content__title'>
                     <h2>名前</h2>
                     <input type='text' name='name' value="{{ $profile->name }}">
+                </div>
+                <div>
+                    <h2>アイコン</h2>
+                    <input type="file" name="image" >
                 </div>
                 <div class='content__body'>
                     <h2>Twitter ID</h2>

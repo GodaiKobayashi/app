@@ -34,7 +34,11 @@ class ProfileController extends Controller
     
     public function store(Request $request, Profile $profile, Rank $rank)
     {
-        
+       @dd($request->file('image'));
+        $icon_image = $request->file('image');
+        $fillPath = $icon_image->store('public');
+        $profile->path = str_replace('public/', '',$fillPath);
+         
         $input_profile = $request['profile'];
         $input_devices = $request->devices_array;  
         $input_rank = $request->ranks_array;  
@@ -43,6 +47,8 @@ class ProfileController extends Controller
     
     
         $profile->fill($input_profile)->save();
+        
+       
     
     //attachメソッドを使って中間テーブルにデータを保存
         $profile->devices()->attach($input_devices); 
@@ -61,6 +67,10 @@ class ProfileController extends Controller
     
           $profile->name = $request->name;
           $profile->short = $request->profile['short'];
+        
+        $icon_image = $request->file('image');
+        $fillPath = $icon_image->store('public');
+        $profile->path = str_replace('public/', '',$fillPath);
           $device = $request->devices_array;
           $rank = $request->ranks_array;
           
@@ -91,9 +101,10 @@ class ProfileController extends Controller
     
     public function my()
     {
-        $user_id = Auth::user()->id;
-        return view('profiles.my')
-        ->with(['user_id' => $user_id]);
+       return view('profiles.my');
+        // $user_id = Auth::user()->id;
+        // return view('profiles.my')
+        // ->with(['user_id' => $user_id]);
     }
     
 }

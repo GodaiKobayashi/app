@@ -25,6 +25,7 @@
         </div>
     </div>
 </div>
+<img src="/storage/top-page.jpg">
 @endsection
 
 @section('js')

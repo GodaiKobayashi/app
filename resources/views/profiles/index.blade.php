@@ -16,6 +16,9 @@
         </h3>  
         
        <p><b>ユーザー：</b>{{Auth::user()->name}}</p>
+       
+       <p>アイコン</p>
+       <p><img src="/storage/{{ $profile->path }}"  width="300" height="200px"></p>
         
        
         <h5 class='short'><b>Twitter ID:</b>{{ $profile->short }}</h5>
