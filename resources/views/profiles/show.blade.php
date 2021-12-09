@@ -6,6 +6,11 @@
                 <h2>Display Name</h2>
                 <p>{{ $profile->name }}</p>
             </div>
+            
+            <div>
+                <h2>アイコン</h2>
+                <p><img src="/storage/{{ $profile->path }}"  width="300" height="200px"></p>
+            </div>
         
             <div>
                 <h2>Twitter ID</h2>

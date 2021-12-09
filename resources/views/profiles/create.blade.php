@@ -9,8 +9,12 @@
     
     <body>
         <h1>ユーザープロフィール作成</h1>
-        <form action="{{ route('profile.store') }}" method="POST">
+        <form action="{{ route('profile.store') }}" method="POST"  enctype="multipart/form-data">
             @csrf
+            <div>
+                <h2>アイコン</h2>
+                <input type="file" name="image">
+            </div>
             <div>
                 <h2>Display Name</h2>
                 <input type="text" name="profile[name]" placeholder="ゲーム内の名前" />
