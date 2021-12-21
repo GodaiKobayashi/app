@@ -22,9 +22,9 @@ Route::post('/add', 'HomeController@add')->name('add');
 Route::get('/result/ajax', 'HomeController@getData');
 
 Route::get('/profiles', 'ProfileController@index')->name('profile.index');
-Route::get('/profiles/create', 'ProfileController@create');
+Route::get('/profiles/create', 'ProfileController@create')->name('profile.create');
 Route::get('/profiles/{profile}/edit', 'ProfileController@edit')->name('profile.edit');
-Route::get('/profiles/my', 'ProfileController@my');
+Route::get('/profiles/my', 'ProfileController@my')->name('profile.my');
 Route::get('/profiles/{profile}', 'ProfileController@show')->name('profile.show');
 
 Route::post('/profiles/store', 'ProfileController@store')->name('profile.store');
@@ -34,9 +34,6 @@ Route::put('/profiles/{profile}/update', 'ProfileController@update')->name('prof
 Route::delete('/profiles/{profile}/destroy', 'ProfileController@destroy')->name('profile.destroy');
 Auth::routes();
 
+Route::get('/vue', 'ProfileController@vue');
 
-
-
-
-
-
+Route::get('/search', 'ProfileController@search')->name('search');

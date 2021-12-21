@@ -1,3 +1,9 @@
+
+
+
+
+
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -14,7 +20,7 @@ class CreateProfileRankTable extends Migration
     public function up()
     {
         Schema::create('profile_rank', function (Blueprint $table) {
-            $table->id();
+           $table->id();
             $table->unsignedBigInteger('profile_id');
             $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
             $table->unsignedBigInteger('rank_id');

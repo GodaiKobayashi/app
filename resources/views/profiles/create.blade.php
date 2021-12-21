@@ -30,7 +30,7 @@
                 @foreach($devices as $device)
                     <label>
                         
-                        <input type="checkbox" value="{{ $device->id }}" name="devices_array[]">
+                        <input type="radio" value="{{ $device->id }}" name="devices_array[]">
                             {{$device->device_name}}
                         </input>
                     </label>
