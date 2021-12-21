@@ -7,7 +7,7 @@ use App\Profile;
 use App\Device;
 use App\Rank;
 use App\User;
-use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
 
 
 class ProfileController extends Controller
@@ -24,7 +24,6 @@ class ProfileController extends Controller
        return view('profiles.show')
        ->with(['profile' => $profile ]);
    }
-   
     
     public function create(Device $devices,Profile $profiles,Rank $ranks)
     {
@@ -34,14 +33,22 @@ class ProfileController extends Controller
     
     public function store(Request $request, Profile $profile, Rank $rank)
     {
-       @dd($request->file('image'));
+       
         $icon_image = $request->file('image');
         $fillPath = $icon_image->store('public');
         $profile->path = str_replace('public/', '',$fillPath);
-         
-        $input_profile = $request['profile'];
+        
         $input_devices = $request->devices_array;  
+        $profileDevice = Device::where('id',$input_devices)->first('device_name');  
+        $deviceName = $profileDevice->device_name;
+        $profile->device = $deviceName;
+        
         $input_rank = $request->ranks_array;  
+        $profileRank = Rank::where('id',$input_rank)->first('rank_name');  
+        $rankName = $profileRank->rank_name;
+        $profile->rank = $rankName;
+        $input_profile = $request['profile'];
+       
         $input_profile += ['user_id' => $request->user()->id]; 
 
     
@@ -53,7 +60,7 @@ class ProfileController extends Controller
     //attachメソッドを使って中間テーブルにデータを保存
         $profile->devices()->attach($input_devices); 
         $profile->ranks()->attach($input_rank); 
-        return redirect('/profiles');
+        return redirect('/home');
     }
     
     public function edit(Profile $profile, Device $device, Rank $rank)
@@ -80,7 +87,7 @@ class ProfileController extends Controller
             // Profile::where('id', $id)->update($update);
             // $profile = $profile->id;
             // $profile->devices()->sync(request()->devices);
-            return redirect('/profiles');
+            return redirect('/home');
      
         //  $profile->name = $request->name;
         //  $profile->short = $request->short;
@@ -100,11 +107,26 @@ class ProfileController extends Controller
     }
     
     public function my()
-    {
-       return view('profiles.my');
+    {  
+      
+        $user = Auth::user();
+        
+        // $user_profile = $user->profile;
+        // $user_devices = $user->profile->devices;
+    
+       return view('profiles.my')
+       ->with(['user' => $user]);
         // $user_id = Auth::user()->id;
         // return view('profiles.my')
         // ->with(['user_id' => $user_id]);
     }
     
+    public function vue()
+    {
+        return view('Vue');        
+    }
+    public function search()
+    {
+        return view('search');        
+    }
 }

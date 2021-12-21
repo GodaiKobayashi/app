@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
+use App\Profile;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user();
+        if(!isset($user->profile)){
+        return redirect()->route('profile.create');
+        }
+       // @dd($user);
+        return view('home')
+        ->with(['user' =>$user]);
     }
 
     public function getData()

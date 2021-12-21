@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-        <a href="{{ route('profile.edit',$profile->id) }}">更新</a>
+        <!--<a href="{{ route('profile.edit',$profile->id) }}">更新</a>-->
             <div>
                 <h2>Display Name</h2>
                 <p>{{ $profile->name }}</p>
@@ -35,5 +35,40 @@
 
             <button class="btn">[削除]</button>
         </form>
-        <a href="{{ route('profile.index') }}">戻る</a> 
+        <p id="app">
+          <!-- コピー対象要素とコピーボタン -->
+            <input id="copyTarget" type="text" value="{{$profile->short}}" readonly>
+            <button onclick="copyToClipboard()">Copy text</button>
+
+            <a v-bind:href="twitter">ID検索</a>
+        </p>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- bodyタグ内の下部に以下を入力する -->
+    <script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+        twitter: 'https://twitter.com'
+        }
+    })
+    
+    
+    
+    
+        function copyToClipboard() {
+            // コピー対象をJavaScript上で変数として定義する
+            var copyTarget = document.getElementById("copyTarget");
+
+            // コピー対象のテキストを選択する
+            copyTarget.select();
+
+            // 選択しているテキストをクリップボードにコピーする
+            document.execCommand("Copy");
+
+            // コピーをお知らせする
+            alert("コピーできました！ : " + copyTarget.value);
+        }
+    </script>
+        
  @endsection

@@ -42,7 +42,13 @@
                 </div>
                 
                 <input type="submit" value="保存">
-                <a href="{{ route('profile.show',$profile) }}">戻る</a>
+                      <form method="post" action="{{ route('profile.destroy', $profile) }}">
+            @method('DELETE')
+            @csrf
+
+            <button class="btn">[削除]</button>
+        </form>
+                <a href="{{ route('home') }}">戻る</a>
             </form>
         </div>
 @endsection

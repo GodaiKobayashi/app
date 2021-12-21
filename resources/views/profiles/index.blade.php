@@ -15,7 +15,7 @@
             
         </h3>  
         
-       <p><b>ユーザー：</b>{{Auth::user()->name}}</p>
+       <p><b>ユーザー：</b>{{$profile->user->name}}</p>
        
        <p>アイコン</p>
        <p><img src="/storage/{{ $profile->path }}"  width="300" height="200px"></p>
