@@ -1,48 +1,43 @@
 @extends('layouts.app')
-
+<link href="{{ asset('css/index.css') }}" rel="stylesheet">
 @section('content')
-         <a href="/profiles/create">新規</a>
+         
+ <h1>[利用者一覧]</h1>
 
-<div class='profiles'>
-
-    {{-- 生徒の数だけ繰り返す --}}
+   
+    <div class="container">
     @foreach($profiles as $profile)
-    
-        
-        <h3 class='name'>
-            Display Name:
-            <a href="{{ route('profile.show',$profile) }}">{{ $profile->name }}</a>
-            
-        </h3>  
-        
-       <p><b>ユーザー：</b>{{$profile->user->name}}</p>
+  
+    <div class='profiles'>
+        <h3>[---------]</h3>
+        <div class="index-header">
+            <div class="image">
+           <img src="/storage/{{ $profile->path }}"  width="300" height="200px">
+           </div>
+            <h3>
+                {{$profile->user->name}}
+            </h3> 
+            <h5>ランク：
+               @foreach($profile->ranks as $rank)   
+                    {{ $rank->rank_name }}
+                @endforeach
+            </h5>
+       </div>
+      
+    <div class="index-footer">
+            <a href="{{ route('profile.show',$profile) }}">詳細表示</a>
+        </div>   
        
-       <p>アイコン</p>
-       <p><img src="/storage/{{ $profile->path }}"  width="300" height="200px"></p>
-        
        
-        <h5 class='short'><b>Twitter ID:</b>{{ $profile->short }}</h5>
-        
-        <h5 class='device'>
-            <b>機種:</b>
-        @foreach($profile->devices as $device)   
-            {{ $device->device_name }}
-        @endforeach
-        </h5>
-        
+       <h1>〇</h1>
+       </div>
+      
        
-        <h5 class='rank'>
-            <b>ランク：</b>
-            @foreach($profile->ranks as $rank)   
-                {{ $rank->rank_name }}
-            @endforeach
-        </h5>
-                
-        <h5>----------------------</h5>
     @endforeach
+    </div>
+
+<div class="index-paginate">
     
-</div>
-<div class='paginate'>
             {{ $profiles->links() }}
         </div>
     

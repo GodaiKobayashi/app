@@ -54,4 +54,9 @@ class HomeController extends Controller
         ]);
         return redirect()->route('home');
     }
+    
+    public function board()
+    {
+        return view('board');
+    }
 }

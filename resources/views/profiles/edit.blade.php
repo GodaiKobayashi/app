@@ -2,6 +2,15 @@
 
 @section('content')
         <h1 class="title">編集画面</h1>
+             @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <div class="content">
             
          
@@ -10,7 +19,7 @@
                 @method('PUT')
                 <div class='content__title'>
                     <h2>名前</h2>
-                    <input type='text' name='name' value="{{ $profile->name }}">
+                    <input type='text' name='profile[name]' value="{{ $profile->name }}">
                 </div>
                 <div>
                     <h2>アイコン</h2>
@@ -24,7 +33,7 @@
                     <h2>機種</h2>
                     @foreach($devices as $device)
                      <label>
-                           <input type="checkbox" value="{{ $device->id }}" name="devices_array[]"{{ $profile->devices->contains($device->id) ? 'checked' : '' }}>
+                           <input type="radio" value="{{ $device->id }}" name="devices_array[]"{{ $profile->devices->contains($device->id) ? 'checked' : '' }}>
                                {{$device->device_name}}
                            </input>
                      </label>
@@ -42,11 +51,7 @@
                 </div>
                 
                 <input type="submit" value="保存">
-                      <form method="post" action="{{ route('profile.destroy', $profile) }}">
-            @method('DELETE')
-            @csrf
-
-            <button class="btn">[削除]</button>
+                
         </form>
                 <a href="{{ route('home') }}">戻る</a>
             </form>
