@@ -14,7 +14,8 @@ class TweetController extends Controller
      */
     public function index()
     {
-        //
+        $tweets = Tweet::all();
+        return view('tweet', compact('tweets'));
     }
 
     /**
@@ -35,9 +36,14 @@ class TweetController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $tweet = new Tweet();
-        $tweet = $request->tweet;
+        $tweet->user_id = $user->id;
+        $tweet->name = $user->name;
+        $tweet->tweet = $request->tweet;
         $tweet->save();
+
+        return $tweet;
     }
 
     /**

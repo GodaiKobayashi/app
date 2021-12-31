@@ -8,6 +8,9 @@ class Tweet extends Model
 {
     protected $fillable = [
         'id',
-        'memo'
+        'user_id',
+        'name',
+        'tweet',
+        
         ];
 }

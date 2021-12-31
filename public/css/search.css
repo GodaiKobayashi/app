@@ -1,0 +1,29 @@
+
+.back {
+    margin: 30px auto;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+}
+.search {
+   padding: 3em 0.5em;
+   margin: 10px auto;
+    color: #5d627b;
+    background: white;
+    border-top: solid 5px #5d627b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+    table-layout : auto;	
+    width: 70%;
+}
+.search .input{
+    margin-right: auto;
+}
+
+li {
+    list-style:none
+}
+h1 {
+    text-align: center;
+    padding-top: 0.5em;
+    padding-bottom: 0em;
+}

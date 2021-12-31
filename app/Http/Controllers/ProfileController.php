@@ -8,6 +8,7 @@ use App\Device;
 use App\Rank;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 
 
 class ProfileController extends Controller
@@ -16,7 +17,7 @@ class ProfileController extends Controller
     {
         
         return view('profiles.index')
-        ->with(['profiles' => $profiles->getPaginateByLimit()]);
+        ->with(['profiles' => $profiles->getPaginateByLimit(10)]);
     }
     
    public function show(Profile $profile )
@@ -33,8 +34,17 @@ class ProfileController extends Controller
     
     public function store(Request $request, Profile $profile, Rank $rank)
     {
+        $validatedData = $request->validate([
+        'profile.name' => 'required|max:10',
+            'image' => 'required',
+            'profile.short' => 'required|max:20',
+            'devices_array' => 'required',
+            'ranks_array' => 'required'
+    ]);
+
        
         $icon_image = $request->file('image');
+        $path = Storage::disk('s3')->putFile('/', $icon_image, 'public');
         $fillPath = $icon_image->store('public');
         $profile->path = str_replace('public/', '',$fillPath);
         
@@ -71,54 +81,48 @@ class ProfileController extends Controller
     
     public function update(Request $request, Profile $profile , Device $device, Rank $rank)
     {
-    
-          $profile->name = $request->name;
-          $profile->short = $request->profile['short'];
+         $validatedData = $request->validate([
+        'profile.name' => 'required|max:10',
+            'image' => 'required',
+            'profile.short' => 'required|max:20',
+            'devices_array' => 'required',
+            'ranks_array' => 'required'
+    ]);
+        
+
+         $profile->name = $request->profile['name'];
+         $profile->short = $request->profile['short'];
         
         $icon_image = $request->file('image');
+        $path = Storage::disk('s3')->putFile('/', $icon_image, 'public');
         $fillPath = $icon_image->store('public');
         $profile->path = str_replace('public/', '',$fillPath);
-          $device = $request->devices_array;
-          $rank = $request->ranks_array;
+        $device = $request->devices_array;
+        $profileDevice = Device::where('id',$device)->first('device_name');  
+        $deviceName = $profileDevice->device_name;
+        $profile->device = $deviceName;
+        
+        $rank = $request->ranks_array;
+        $profileRank = Rank::where('id',$rank)->first('rank_name');  
+        $rankName = $profileRank->rank_name;
+        $profile->rank = $rankName;
           
           $profile->save();
           $profile->devices()->sync($device); 
           $profile->ranks()->sync($rank); 
-            // Profile::where('id', $id)->update($update);
-            // $profile = $profile->id;
-            // $profile->devices()->sync(request()->devices);
             return redirect('/home');
-     
-        //  $profile->name = $request->name;
-        //  $profile->short = $request->short;
-        //  $profile->save(name);
-        //  $profile->save(short);
-        //  return redirect()
-        //  ->route('profile.show', $profile);
-         
     }
     
-    public function destroy(Profile $profile)
-    {
-        $profile->delete();
-
-        return redirect()
-            ->route('profile.index');
-    }
+    
     
     public function my()
     {  
       
         $user = Auth::user();
         
-        // $user_profile = $user->profile;
-        // $user_devices = $user->profile->devices;
     
        return view('profiles.my')
        ->with(['user' => $user]);
-        // $user_id = Auth::user()->id;
-        // return view('profiles.my')
-        // ->with(['user_id' => $user_id]);
     }
     
     public function vue()
@@ -128,5 +132,22 @@ class ProfileController extends Controller
     public function search()
     {
         return view('search');        
+    }
+    
+    public function createPost(Request $request)
+  {
+      
+      $param = [
+        'login_id'=>$request->input('login_id'),
+        'name'=>$request->input('name'),
+        'comment'=>$request->input('comment'),
+    ];
+    @dd($param);
+    DB::insert('insert into comments (login_id,name,comment) values (:login_id,:name,:comment)', $param);
+}
+
+    public function how()
+    {
+        return view('components.how');
     }
 }

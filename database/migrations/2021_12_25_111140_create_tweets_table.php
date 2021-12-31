@@ -15,7 +15,10 @@ class CreateTweetsTable extends Migration
     {
         Schema::create('tweets', function (Blueprint $table) {
             $table->id();
-            $table->string('memo');
+            $table->integer('user_id');
+            $table->string('name');
+            $table->string('tweet');
+            $table->timestamps();
         });
     }
 

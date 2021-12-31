@@ -1,16 +1,18 @@
 @extends('layouts.app')
-
+  <link href="{{ asset('css/show.css') }}" rel="stylesheet">
 @section('content')
-        <!--<a href="{{ route('profile.edit',$profile->id) }}">更新</a>-->
+<div class="show">
+      
+            <div class="title">Profile</div>
             <div>
                 <h2>Display Name</h2>
                 <p>{{ $profile->name }}</p>
             </div>
             
-            <div>
+        
                 <h2>アイコン</h2>
-                <p><img src="/storage/{{ $profile->path }}"  width="300" height="200px"></p>
-            </div>
+                <p><img src="/storage/{{ $profile->path }}" ></p>
+            
         
             <div>
                 <h2>Twitter ID</h2>
@@ -29,22 +31,19 @@
                     {{ $rank->rank_name }}
                 @endforeach
             </div>
-         <form method="post" action="{{ route('profile.destroy', $profile) }}">
-            @method('DELETE')
-            @csrf
-
-            <button class="btn">[削除]</button>
         </form>
-        <p id="app">
+        <div id="app">
           <!-- コピー対象要素とコピーボタン -->
             <input id="copyTarget" type="text" value="{{$profile->short}}" readonly>
-            <button onclick="copyToClipboard()">Copy text</button>
+            <button onclick="copyToClipboard()">Copy ID</button>
 
-            <a v-bind:href="twitter">ID検索</a>
-        </p>
-    
+            <a v-bind:href="twitter">Twitter検索</a>
+        </div>
+        
+    </div>
+    <a href="{{ route('profile.index') }}">戻る</a>
+     
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- bodyタグ内の下部に以下を入力する -->
     <script>
     var app = new Vue({
         el: '#app',
@@ -67,7 +66,7 @@
             document.execCommand("Copy");
 
             // コピーをお知らせする
-            alert("コピーできました！ : " + copyTarget.value);
+            alert("twitterID コピー: " + copyTarget.value);
         }
     </script>
         

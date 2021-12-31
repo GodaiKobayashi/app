@@ -28,4 +28,9 @@ Route::get('profiles',function(){
 	return App\Profile::all();
 });
 
-Route::get('tweets', 'TweetController@store');
+Route::get('comments', function(){
+	return App\Comment::all();
+});
+Route::get('users', function(){
+	return App\User::all();
+});

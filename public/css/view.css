@@ -16,10 +16,9 @@
   font-weight: bold
 }
 .comment-container {
-  /*position: relative;left: 100px;*/
-  /*bottom: 20px;*/
-  /*text-align: center;*/
-  /*width: 100%;*/
+justify-content: center;
+display: flex;
+
 }
 
 .comment-area {
@@ -87,5 +86,40 @@
   font-weight: bold;
 }
 
+.Gird {
+  display: grid;
+  grid-template-columns: repeat(10,1fr);
+  
+}
 
+.menu {
+  grid-column: 2 span;
+  grid-row: 3 span;
+  padding: 0% 5% 0% 20%;
+}
+.chat {
+   grid-column: 8 span;
+  grid-row: 3 span;
+   padding: 0% 5%;
+}
+li {
+  border-width: 1px 0 0 0;
+	border-style: dotted;
+	border-color: #1e88e5;
+}
+
+.profile {
+  padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #5d627b;
+    background: white;
+    border-top: solid 5px #6c757d;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+img {
+  max-width: 100%;
+height: auto;
+width /***/:auto;
+}
 /*# sourceMappingURL=view.css.map */
