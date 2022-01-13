@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TwitterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,19 +36,9 @@ Route::prefix('profiles')->group(function(){
 
 Auth::routes();
 
-Route::get('/vue', 'ProfileController@vue');
 Route::get('/how', 'ProfileController@how')->name('how');
 
 Route::get('/search', 'ProfileController@search')->name('search');
 
-Route::get('/board', 'HomeController@board');
+Route::get('twitter', 'TwitterController@index');
 
-Route::post('/post','ProfileController@createPost');
-
-Route::get('/po', function () {
-    return view('/post');
-});
-// 入力画面表示
-Route::get('/tweet/index', 'TweetController@index');
-// ツイート内容保存
-Route::post('/tweet', 'TweetController@store');

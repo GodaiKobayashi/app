@@ -1,44 +1,43 @@
 @extends('layouts.app')
  <link href="{{ asset('css/search.css') }}" rel="stylesheet">
 @section('content')
-   
     <div class="search">
         <h1>ユーザー検索機能</h1>
-
-	        <div id="bpp">
-                 <h3><input type="text" v-model="keyword"></h3>
-                  <table>
+	        
+	      <div id="bpp">
+            <h3><input type="text" v-model="keyword"></h3>
+                <table>
                   <thead>
-                            <tr>
-                                <th scope="col">名前</th>
-                                <th scope="col">TwitterID</th>
-                                <th scope="col">ハード</th>
-                                <th scope="col">ランク</th>
-                                <th scope="col">詳細</th>
-                            </tr>    
-                        </thead>
-                        </table>
+                      <tr>
+                          <th scope="col">名前</th>
+                          <th scope="col">TwitterID</th>
+                          <th scope="col">ハード</th>
+                          <th scope="col">ランク</th>
+                          <th scope="col">詳細</th>
+                      </tr>    
+                  </thead>
+                </table>
+                
                 <li v-for="profile in filteredProfiles" :key="profile.id">
-                   
-                       <table>
+                    <table>
                         <tbody>
                             <tr>
                                 <th>@{{ profile.name }}</th>
-              			        <th>@{{ profile.short }}</th>
-              			        <th>@{{ profile.device }}</th>
-              			        <th>@{{ profile.rank }}</th>
-              			        <th><a :href="/profiles/+profile.id">詳細</a></th>
+                  			        <th>@{{ profile.short }}</th>
+                  			        <th>@{{ profile.device }}</th>
+                  			        <th>@{{ profile.rank }}</th>
+                  			        <th><a :href="/profiles/+profile.id">詳細</a></th>
                             </tr>
                         </tbody>
-        			</table>
-        			
-	            </li>
-	           
+        			      </table>
+	              </li>
          </div>
     </div>
+    
       <div class="back"><a href="{{ route('home') }}">戻る</a></div>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
 var app = new Vue({
