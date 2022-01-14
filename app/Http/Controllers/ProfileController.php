@@ -15,7 +15,6 @@ class ProfileController extends Controller
 {   
     public function index(Profile $profiles)
     {
-        
         return view('profiles.index')
         ->with(['profiles' => $profiles->getPaginateByLimit(10)]);
     }
@@ -35,14 +34,13 @@ class ProfileController extends Controller
     public function store(Request $request, Profile $profile, Rank $rank)
     {
         $validatedData = $request->validate([
-        'profile.name' => 'required|max:10',
+            'profile.name' => 'required|max:10',
             'image' => 'required',
             'profile.short' => 'required|max:20',
             'devices_array' => 'required',
             'ranks_array' => 'required'
-    ]);
+        ]);
 
-       
         $icon_image = $request->file('image');
         $path = Storage::disk('s3')->putFile('/', $icon_image, 'public');
         $fillPath = $icon_image->store('public');
@@ -61,13 +59,8 @@ class ProfileController extends Controller
        
         $input_profile += ['user_id' => $request->user()->id]; 
 
-    
-    
         $profile->fill($input_profile)->save();
         
-       
-    
-    //attachメソッドを使って中間テーブルにデータを保存
         $profile->devices()->attach($input_devices); 
         $profile->ranks()->attach($input_rank); 
         return redirect('/home');
@@ -75,23 +68,21 @@ class ProfileController extends Controller
     
     public function edit(Profile $profile, Device $device, Rank $rank)
     {
-            return view('profiles.edit')->with(['profile' => $profile,'devices' => $device->get(), 'ranks'=> $rank->get()]);
-
+        return view('profiles.edit')->with(['profile' => $profile,'devices' => $device->get(), 'ranks'=> $rank->get()]);
     }
     
     public function update(Request $request, Profile $profile , Device $device, Rank $rank)
     {
-         $validatedData = $request->validate([
-        'profile.name' => 'required|max:10',
+        $validatedData = $request->validate([
+            'profile.name' => 'required|max:10',
             'image' => 'required',
             'profile.short' => 'required|max:20',
             'devices_array' => 'required',
             'ranks_array' => 'required'
-    ]);
-        
+        ]);
 
-         $profile->name = $request->profile['name'];
-         $profile->short = $request->profile['short'];
+        $profile->name = $request->profile['name'];
+        $profile->short = $request->profile['short'];
         
         $icon_image = $request->file('image');
         $path = Storage::disk('s3')->putFile('/', $icon_image, 'public');
@@ -107,47 +98,26 @@ class ProfileController extends Controller
         $rankName = $profileRank->rank_name;
         $profile->rank = $rankName;
           
-          $profile->save();
-          $profile->devices()->sync($device); 
-          $profile->ranks()->sync($rank); 
+        $profile->save();
+        $profile->devices()->sync($device); 
+        $profile->ranks()->sync($rank); 
             return redirect('/home');
     }
-    
-    
-    
+
     public function my()
     {  
-      
         $user = Auth::user();
-        
-    
-       return view('profiles.my')
-       ->with(['user' => $user]);
+        return view('profiles.my')
+            ->with(['user' => $user]);
     }
     
-    public function vue()
-    {
-        return view('Vue');        
-    }
     public function search()
     {
         return view('search');        
     }
     
-    public function createPost(Request $request)
-  {
-      
-      $param = [
-        'login_id'=>$request->input('login_id'),
-        'name'=>$request->input('name'),
-        'comment'=>$request->input('comment'),
-    ];
-    @dd($param);
-    DB::insert('insert into comments (login_id,name,comment) values (:login_id,:name,:comment)', $param);
-}
-
     public function how()
     {
-        return view('components.how');
+        return view('how');
     }
 }

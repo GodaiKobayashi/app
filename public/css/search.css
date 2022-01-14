@@ -22,7 +22,7 @@
 li {
     list-style:none
 }
-h1 {
+.search h1 {
     text-align: center;
     padding-top: 0.5em;
     padding-bottom: 0em;

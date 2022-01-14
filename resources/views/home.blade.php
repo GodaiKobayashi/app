@@ -11,6 +11,7 @@
                 <div class="card-body chat-card">
                         <div id="comment-data"></div>
                 </div>
+                
             <form method="POST" action="{{route('add')}}">
                 @csrf
                 <div class="comment-container">

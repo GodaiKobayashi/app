@@ -1,19 +1,19 @@
 @extends('layouts.app')
-
+ <link href="{{ asset('css/create.css') }}" rel="stylesheet">
 @section('content')
+    <div class="create">
         <h1 class="title">編集画面</h1>
-             @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        
         <div class="content">
-            
-         
             <form action="{{ route('profile.update', $profile) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -21,14 +21,17 @@
                     <h2>名前</h2>
                     <input type='text' name='profile[name]' value="{{ $profile->name }}">
                 </div>
+                
                 <div>
                     <h2>アイコン</h2>
                     <input type="file" name="image" >
                 </div>
+                
                 <div class='content__body'>
                     <h2>Twitter ID</h2>
                     <input type='text' name='profile[short]' value="{{ $profile->short }}">
                 </div>
+                
                 <div>
                     <h2>機種</h2>
                     @foreach($devices as $device)
@@ -39,6 +42,7 @@
                      </label>
                     @endforeach         
                 </div>
+                
                 <div>
                     <h2>ランク</h2>
                     @foreach($ranks as $rank)
@@ -52,8 +56,8 @@
                 
                 <input type="submit" value="保存">
                 
-        </form>
-                <a href="{{ route('home') }}">戻る</a>
             </form>
+                <a href="{{ route('home') }}">戻る</a>
         </div>
+    </div>
 @endsection
