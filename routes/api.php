@@ -17,3 +17,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('users',function(){
+	return App\User::all();
+});
+Route::get('comments',function(){
+	return App\Comment::all();
+});
+Route::get('profiles',function(){
+	return App\Profile::all();
+});
+
+Route::get('comments', function(){
+	return App\Comment::all();
+});
+Route::get('users', function(){
+	return App\User::all();
+});
