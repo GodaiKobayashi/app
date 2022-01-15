@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProfileIdToDevicesTable extends Migration
+class ChangeProfileIdToDevicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddProfileIdToDevicesTable extends Migration
     public function up()
     {
         Schema::table('devices', function (Blueprint $table) {
-            $table->integer('profile_id')->unsigned();
+           $table->integer('profile_id')->nullable()->change();
         });
     }
 
