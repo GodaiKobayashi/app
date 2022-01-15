@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class RanksTableSeeder extends Seeder
+class RankTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

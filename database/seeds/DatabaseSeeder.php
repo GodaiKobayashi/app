@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use database\seeds\RanksTableSeeder;
+use Illuminate\Database\Eloquent\Model;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UserSeeder::class);
-        $this->call('RanksTableSeeder::class');
+        $this->call('RankTableSeeder::class');
+        $this->call('DeviceTableSeeder::class');
     }
 }
