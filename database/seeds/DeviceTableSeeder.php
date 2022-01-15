@@ -16,6 +16,8 @@ class DeviceTableSeeder extends Seeder
         foreach ($devices_name as $device_name){
             DB::table('devices')->insert([
             'device_name' => $device_name,
+            'created_at' => now(),
+            'updated_at' => now(),
             ]);
         }
     }
