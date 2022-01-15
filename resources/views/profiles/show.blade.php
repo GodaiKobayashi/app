@@ -5,29 +5,29 @@
         <div class="title">Profile</div>
             <div>
                 <h2>Display Name</h2>
-                <p>{{ $profile->name }}</p>
+                    <p>{{ $profile->name }}</p>
             </div>
     
                 <h2>アイコン</h2>
-                <p><img src="/storage/{{ $profile->path }}" ></p>
+                    <p><img src="/storage/{{ $profile->path }}" ></p>
         
             <div>
                 <h2>Twitter ID</h2>
-                <p>{{ $profile->short }}</p>
+                    <p>{{ $profile->short }}</p>
             </div>
         
             <div>
                 <h2>機種</h2>
-                @foreach($profile->devices as $device)   
-                    {{ $device->device_name }}
-                @endforeach
+                    @foreach($profile->devices as $device)   
+                        {{ $device->device_name }}
+                    @endforeach
             </div>
         
             <div>
                 <h2>ランク</h2>
-                @foreach($profile->ranks as $rank)   
-                    {{ $rank->rank_name }}
-                @endforeach
+                    @foreach($profile->ranks as $rank)   
+                        {{ $rank->rank_name }}
+                    @endforeach
             </div>
      
         <div id="app">

@@ -29,18 +29,20 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         if(!isset($user->profile)){
-        return redirect()->route('profile.create');
+            return redirect()->route('profile.create');
         }
-       // @dd($user);
-        return view('home')
-        ->with(['user' =>$user]);
+        
+        $twitterController = app()->make('App\Http\Controllers\Auth\TwitterController');
+        $tweets = $twitterController->index("Apex");
+        return view('home') 
+            ->with(['user' => $user,'tweets' => $tweets]);
     }
 
     public function getData()
     {
         $comments = Comment::orderBy('created_at', 'desc')->get();
         $json = ["comments" => $comments];
-        return response()->json($json);
+            return response()->json($json);
     }
 
     public function add(Request $request)

@@ -91,7 +91,11 @@ display: flex;
   grid-template-columns: repeat(10,1fr);
   
 }
-
+@media screen and (max-width:768px) {
+    .Gird {
+        grid-template-columns: repeat(1,1fr);;
+    }
+}
 .menu {
   grid-column: 2 span;
   grid-row: 3 span;
@@ -124,3 +128,19 @@ width /***/:auto;
 }
 /*# sourceMappingURL=view.css.map */
 
+@media screen and (max-width:768px) {
+    .menu {
+  grid-column: 2 span;
+  grid-row: 3 span;
+  padding: 0% 5% 0% 5%;
+}
+}
+
+.card-header {
+  font-size: large;
+  font-weight: bolder;
+}
+
+.profile h2 {
+  font-weight: bolder;
+}

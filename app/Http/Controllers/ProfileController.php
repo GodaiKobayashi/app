@@ -16,19 +16,19 @@ class ProfileController extends Controller
     public function index(Profile $profiles)
     {
         return view('profiles.index')
-        ->with(['profiles' => $profiles->getPaginateByLimit(10)]);
+            ->with(['profiles' => $profiles->getPaginateByLimit(10)]);
     }
     
    public function show(Profile $profile )
    {
-       return view('profiles.show')
-       ->with(['profile' => $profile ]);
+        return view('profiles.show')
+            ->with(['profile' => $profile ]);
    }
     
     public function create(Device $devices,Profile $profiles,Rank $ranks)
     {
         return view('profiles.create')
-        ->with(['devices' => $devices->get(),'profile' => $profiles->get(),'ranks' => $ranks->get()]);
+            ->with(['devices' => $devices->get(),'profile' => $profiles->get(),'ranks' => $ranks->get()]);
     }
     
     public function store(Request $request, Profile $profile, Rank $rank)
@@ -56,14 +56,14 @@ class ProfileController extends Controller
         $rankName = $profileRank->rank_name;
         $profile->rank = $rankName;
         $input_profile = $request['profile'];
-       
         $input_profile += ['user_id' => $request->user()->id]; 
 
         $profile->fill($input_profile)->save();
         
         $profile->devices()->attach($input_devices); 
         $profile->ranks()->attach($input_rank); 
-        return redirect('/home');
+        
+            return redirect('/');
     }
     
     public function edit(Profile $profile, Device $device, Rank $rank)

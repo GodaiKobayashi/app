@@ -1,17 +1,17 @@
 @extends('layouts.app')
- <link href="{{ asset('css/create.css') }}" rel="stylesheet">
+ <link href="{{ asset('css/show.css') }}" rel="stylesheet">
 @section('content')
-    <div class="create">
+    <div class="show">
         <h1 class="title">編集画面</h1>
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         
         <div class="content">
             <form action="{{ route('profile.update', $profile) }}" method="POST" enctype="multipart/form-data">
@@ -35,22 +35,22 @@
                 <div>
                     <h2>機種</h2>
                     @foreach($devices as $device)
-                     <label>
-                           <input type="radio" value="{{ $device->id }}" name="devices_array[]"{{ $profile->devices->contains($device->id) ? 'checked' : '' }}>
-                               {{$device->device_name}}
-                           </input>
-                     </label>
+                        <label>
+                            <input type="radio" value="{{ $device->id }}" name="devices_array[]"{{ $profile->devices->contains($device->id) ? 'checked' : '' }}>
+                                {{$device->device_name}}
+                            </input>
+                        </label>
                     @endforeach         
                 </div>
                 
                 <div>
                     <h2>ランク</h2>
                     @foreach($ranks as $rank)
-                     <label>
-                           <input type="radio" value="{{ $rank->id }}" name="ranks_array[]"{{ $profile->ranks->contains($rank->id) ? 'checked' : '' }}>
-                               {{$rank->rank_name}}
-                           </input>
-                     </label>
+                        <label>
+                            <input type="radio" value="{{ $rank->id }}" name="ranks_array[]"{{ $profile->ranks->contains($rank->id) ? 'checked' : '' }}>
+                                {{$rank->rank_name}}
+                            </input>
+                        </label>
                     @endforeach         
                 </div>
                 

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
 @section('content')
 <div class="Gird">
     <div class="menu">
@@ -25,10 +25,16 @@
         </div>
         
     
-     @section('js')
-    <script src="{{ asset('js/comment.js') }}"></script>
-    
+    @section('js')
+        <script src="{{ asset('js/comment.js') }}"></script>
     @endsection
+    
+    <div class="tweet">
+        <div class="box-title">Twitter</div>
+            @foreach ($tweets as $tweet)                
+                <p>{{ $tweet->text }}</p>                
+            @endforeach
+        </div>
     </div>
 </div>
 @endsection

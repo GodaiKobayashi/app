@@ -5,24 +5,30 @@ namespace App\Http\Vender;
 use Illuminate\Http\Request;
 use Abraham\TwitterOAuth\TwitterOAuth;
 
+
 class callTwitterApi
 {
     
-    private $t;
+    private $token;
     
     public function __construct()
     {
-        $this->t = config('services.twitter');
+        $this->token = new TwitterOAuth(
+            config('services.twitter.client_id'),
+            config('services.twitter.client_secret'),
+            config('services.twitter.access_token'),
+            config('services.twitter.access_token_secret')
+        );
     }
     
     // ツイート検索
     public function serachTweets(String $searchWord)
     {
-        $d = $this->t->get("search/tweets", [
+        $tweets = $this->token->get("search/tweets", [
             'q' => $searchWord,
-            'count' => 3,
+            'count' => 5,
          ]);
          
-        return $d->statuses;
+        return $tweets->statuses;
     }
 }

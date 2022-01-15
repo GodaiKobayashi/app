@@ -19,19 +19,19 @@
             
             <div>
                 <h2>機種</h2>
-                @foreach($user->profile->devices as $device)   
-                    {{ $device->device_name }}
-                @endforeach
+                    @foreach($user->profile->devices as $device)   
+                        {{ $device->device_name }}
+                    @endforeach
             </div>
             
             <div>
                 <h2>ランク</h2>
-                @foreach($user->profile->ranks as $rank)   
-                    {{ $rank->rank_name }}
-                @endforeach
+                    @foreach($user->profile->ranks as $rank)   
+                        {{ $rank->rank_name }}
+                    @endforeach
             </div>
     </div>
         <p>
-            <a href="{{ route('profile.index') }}">戻る</a>
+            <a href="{{ route('home') }}">戻る</a>
         </p>
  @endsection

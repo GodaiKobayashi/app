@@ -14,10 +14,10 @@
       
       <div class="profile">
            <div>
-               <h2>My Profile</h2>
-            <p><img src="/storage/{{ $user->profile->path }}"  ></p>
-            <h4>User Name</h4>
-                <p>{{ $user->name }}</p>
+                <h2>My Profile</h2>
+                    <p><img src="/storage/{{ $user->profile->path }}"  ></p>
+                <h4>User Name</h4>
+                    <p>{{ $user->profile->name }}</p>
             </div>
       </div>
     
