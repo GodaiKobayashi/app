@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="panel panel-default">
                 <ul class="nav nav-pills nav-stacked" style="display:block;">
-                    <li><i class="fas fa-user-alt"></i> <a href="{{ route('how') }}">ホーム</a></li>
+                    <li><i class="fas fa-user-alt"></i> <a href="#">ホーム</a></li>
                     <li><i class="fas fa-user-alt"></i> <a href="{{ route('profile.my') }}">My Profile</a></li>
                     <li><i class="fas fa-user-alt"></i> <a href="{{ route('profile.index') }}">利用者一覧</a></li>
                     <li><i class="fas fa-user-alt"></i> <a href="{{ route('search') }}">検索</a></li>
