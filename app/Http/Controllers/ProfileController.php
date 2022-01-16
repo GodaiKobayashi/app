@@ -87,7 +87,7 @@ class ProfileController extends Controller
         $icon_image = $request->file('image');
         $path = Storage::disk('s3')->putFile('/', $icon_image, 'public');
         $fillPath = $icon_image->store('public');
-        $profile->path = str_replace('public/', '',$fillPath);
+        $profile->path = Storage::disk('s3')->url($path);
         $device = $request->devices_array;
         $profileDevice = Device::where('id',$device)->first('device_name');  
         $deviceName = $profileDevice->device_name;

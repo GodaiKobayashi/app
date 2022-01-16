@@ -9,7 +9,7 @@
             </div>
     
                 <h2>アイコン</h2>
-                    <p><img src="/storage/{{ $profile->path }}" ></p>
+                    <p><img src="{{ $profile->path}}" /></p>
         
             <div>
                 <h2>Twitter ID</h2>

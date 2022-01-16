@@ -9,7 +9,7 @@
                 <h3>[---------]</h3>
                     <div class="index-header">
                         <div class="image">
-                            <img src="/storage/{{ $profile->path }}"  width="300" height="200px">
+                            <img src="{{ $profile->path}}"   width="300" height="200px">
                         </div>
                             <h3>
                                 {{$profile->user->name}}
