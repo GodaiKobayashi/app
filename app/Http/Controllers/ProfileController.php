@@ -101,7 +101,7 @@ class ProfileController extends Controller
         $profile->save();
         $profile->devices()->sync($device); 
         $profile->ranks()->sync($rank); 
-            return redirect('/home');
+            return redirect('/');
     }
 
     public function my()
